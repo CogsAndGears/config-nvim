@@ -7,4 +7,6 @@ vim.g.coc_global_extensions = {
   "coc-css",
   -- python
   "coc-pyright",
+  -- rust
+  "coc-rust-analyzer",
 }

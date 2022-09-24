@@ -48,10 +48,19 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- terminal
-  use("akinsho/toggleterm.nvim")
+  use { "akinsho/toggleterm.nvim", tag = "2.3.0", config = function()
+    require("toggleterm").setup{
+      open_mapping = [[<c-\>]],
+    }
+  end}
+
+  -- syntax highlighting
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   -- file browser
-  use("kyazdani42/nvim-tree.lua")
+  use{"kyazdani42/nvim-tree.lua", config = function()
+    require("nvim-tree").setup()
+  end}
 
   -- language server
   use { "neoclide/coc.nvim", branch = "release" }
