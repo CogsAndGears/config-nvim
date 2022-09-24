@@ -53,6 +53,9 @@ return packer.startup(function(use)
   -- file browser
   use("kyazdani42/nvim-tree.lua")
 
+  -- language server
+  use { "neoclide/coc.nvim", branch = "release" }
+
   -- utility
   use("lewis6991/impatient.nvim")
 
