@@ -15,3 +15,4 @@ vim.g.maplocalleader = ","
 --   command_mode = "c",
 
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
