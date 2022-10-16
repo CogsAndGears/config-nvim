@@ -48,87 +48,25 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
   -- terminal
-  use { "akinsho/toggleterm.nvim", tag = "2.3.0", config = function()
-    require("toggleterm").setup{
-      open_mapping = [[<c-\>]],
-    }
-  end}
+  use(require("user.plug.toggleterm").plug)
 
   -- syntax highlighting
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   -- file browser
-  use{"kyazdani42/nvim-tree.lua", config = function()
-    require("nvim-tree").setup()
-  end}
+  use(require("user.plug.tree").plug)
 
   -- language server
-  use { "neoclide/coc.nvim", branch = "release" }
+  use(require("user.plug.coc").plug)
+
+  -- autocomplete
+  --use(require("user.plug.nvim-cmp").plug)
 
   -- debugger
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function ()
-    require("dapui").setup({
-      icons = { expanded = "", collapsed = "", current_frame = "" },
-      mappings = {
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        edit = "e",
-        repl = "r",
-        toggle = "t",
-      },
-      expand_lines = vim.fn.has("nvim-0.7"),
-      layouts = {
-        {
-          elements = {
-            { id = "scopes", size = "0.25" },
-            "breakpoints",
-            "stacks",
-            "watches",
-          },
-          size = 40, -- 40 columns
-          position = "left",
-        },
-        {
-          elements = {
-            "repl",
-            "console",
-          },
-          size = 0.25, -- 25% of total lines
-          position = "bottom",
-        },
-      },
-      controls = {
-        element = "repl",
-        icons = {
-          pause = "",
-          play = "",
-          step_into = "",
-          step_over = "",
-          step_out = "",
-          step_back = "",
-          run_last = "↻",
-          terminate = "□",
-        },
-      },
-      floating = {
-        max_height = nil,
-        max_width = nil,
-        border = "single",
-        mappings = {
-          close = { "q", "<Esc>" },
-        },
-      },
-      windows = { indent = 1 },
-      render = {
-        max_type_length = nil,
-        max_value_lines = 100,
-      },
-    })
-  end}
+  use(require("user.plug.nvim-dap-ui").plug) 
 
   -- utility
-  use("lewis6991/impatient.nvim")
+--  use("lewis6991/impatient.nvim")
 
   -- automatically set your configuration after cloning packer.nvim
   -- put this at the end after all plugins
