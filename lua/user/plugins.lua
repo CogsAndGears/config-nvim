@@ -57,10 +57,11 @@ return packer.startup(function(use)
   use(require("user.plug.tree").plug)
 
   -- language server
-  use(require("user.plug.coc").plug)
+  --use(require("user.plug.coc").plug)
+  use(require("user.plug.mason").plug)
 
   -- autocomplete
-  --use(require("user.plug.nvim-cmp").plug)
+  use(require("user.plug.nvim-cmp").plug)
 
   -- debugger
   use(require("user.plug.nvim-dap-ui").plug) 
