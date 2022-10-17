@@ -20,3 +20,21 @@ end
 
 vim.cmd('colorscheme alduin')
 
+-- Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even with only one match
+-- noinsert: do not insert text until a selection is made
+-- noselect: do not select, force to select one from the menu
+-- shortness: avoid showing extra messages when using completion
+-- updatetime: set updatetime for cursorhold
+vim.opt.completeopt = { 'menuone' }
+
+-- Fixed column for diagnostics to appear
+-- show autodiagnostic popup on cursor hover_range
+-- goto previous / next diagnostic warning / error
+-- show inlay hints more frequently
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
+

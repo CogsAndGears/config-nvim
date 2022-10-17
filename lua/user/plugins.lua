@@ -51,7 +51,7 @@ return packer.startup(function(use)
   use(require("user.plug.toggleterm").plug)
 
   -- syntax highlighting
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use(require("user.plug.nvim-treesitter").plug)
 
   -- file browser
   use(require("user.plug.tree").plug)
@@ -67,7 +67,7 @@ return packer.startup(function(use)
   use(require("user.plug.nvim-dap-ui").plug) 
 
   -- utility
---  use("lewis6991/impatient.nvim")
+  use("lewis6991/impatient.nvim")
 
   -- automatically set your configuration after cloning packer.nvim
   -- put this at the end after all plugins
