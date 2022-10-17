@@ -5,6 +5,7 @@ local auto_servers = {
   "csharp_ls",
   "cmake",
   "clojure_lsp",
+  "cssls",
   "dotls",
   "dockerls",
   "eslint",
@@ -21,18 +22,19 @@ local auto_servers = {
 }
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
-  "rust_analyzer@latest",
+  "rust_analyzer@nightly",
 }
 
 -- lua is dumb and doesn't have a built-in list concatenation function
 local function combine_lists(list_a, list_b)
-  new_list = {}
+  local new_list = {}
   for _, v in ipairs(list_a) do
     table.insert(new_list, v)
   end
   for _, v in ipairs(list_b) do
     table.insert(new_list, v)
   end
+  return new_list
 end
 
 local servers = combine_lists(auto_servers, manual_servers)
