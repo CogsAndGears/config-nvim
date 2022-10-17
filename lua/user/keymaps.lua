@@ -14,4 +14,6 @@ vim.g.maplocalleader = ","
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- rename symbol
+keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", { noremap = true })
 
