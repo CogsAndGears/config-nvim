@@ -25,6 +25,15 @@ local manual_servers = {
   "rust_analyzer@nightly",
 }
 
+-- makes a new list with the first element of the passed-in list
+local function get_first_elm(list_a)
+  local new_list = {}
+  for _, v in ipairs(list_a) do
+    table.insert(new_list, v[1])
+  end
+  return new_list
+end
+
 -- lua is dumb and doesn't have a built-in list concatenation function
 local function combine_lists(list_a, list_b)
   local new_list = {}
@@ -70,8 +79,9 @@ local function setup()
     ensure_installed = servers,
   })
   -- configure the simple servers
+  local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, name in ipairs(auto_servers) do
-    local ok, server = require("lspconfig")[name].setup{}
+    local ok, server = require("lspconfig")[name].setup({ capabilities=capabilities })
   end
   -- configure the servers which require more installation steps
   setup_rust_tools()
