@@ -1,7 +1,13 @@
 local languages = {
+  "css",
+  "html",
+  "json",
   "lua",
+  "php",
   "rust",
   "toml",
+  "tsx",
+  "yaml",
 }
 local function setup()
   require("nvim-treesitter.configs").setup {
