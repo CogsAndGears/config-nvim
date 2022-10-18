@@ -48,6 +48,30 @@ end
 
 local servers = combine_lists(auto_servers, manual_servers)
 
+-- Set up keymaps when attaching LSP to a buffer
+local on_attach = function(client, buffer)
+  -- mappings
+  -- see `:help vim.lsp.*` for documentation
+  -- settings from here: https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  --vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  --vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  --vim.keymap.set('n', '<space>wl', function()
+  --  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  --end, bufopts)
+  --vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  --vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  --vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  --vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+end
+
+
 -- we have to remove any @version string from package names when passing them in
 -- to nvim-lspconfig
 local function strip_ver(package_name)
@@ -63,11 +87,13 @@ local function setup_rust_tools()
   local rt = require("rust-tools")
   rt.setup({
     server = {
-      on_attach = function(_, bufnr)
+      on_attach = function(client, bufnr)
         -- Hover actions
         vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
         -- Code action groups
         vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+
+        on_attach(client, bufnr)
       end,
     },
   })
@@ -81,7 +107,7 @@ local function setup()
   -- configure the simple servers
   local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, name in ipairs(auto_servers) do
-    local ok, server = require("lspconfig")[name].setup({ capabilities=capabilities })
+    local ok, server = require("lspconfig")[name].setup({ capabilities=capabilities, on_attach=on_attach })
   end
   -- configure the servers which require more installation steps
   setup_rust_tools()
