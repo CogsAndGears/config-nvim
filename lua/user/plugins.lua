@@ -42,6 +42,11 @@ packer.init {
   },
 }
 
+local function file_exists(fname)
+  local f = io.open(fname, 'r');
+  if f ~= nil then io.close(f) return true else return false end
+end
+
 -- Install plugins here
 return packer.startup(
   {
@@ -71,9 +76,13 @@ return packer.startup(
       -- utility
       use("lewis6991/impatient.nvim")
 
+      -- recreate your configuration if the packer_compiled.lua script has not yet been created
+      local compiled_path = vim.fn.stdpath('config')..'/plugin/packer_compiled.lua'
+      local compiled_exists = file_exists(compiled_path)
+
       -- automatically set your configuration after cloning packer.nvim
       -- put this at the end after all plugins
-      if PACKER_BOOTSTRAP then
+      if PACKER_BOOTSTRAP or not compiled_exists then
         require("packer").sync()
       end
     end,
