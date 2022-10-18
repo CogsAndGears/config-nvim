@@ -43,36 +43,43 @@ packer.init {
 }
 
 -- Install plugins here
-return packer.startup(function(use)
-  -- required so packer recognizes itself
-  use("wbthomason/packer.nvim")
+return packer.startup(
+  {
+    function(use)
+      -- required so packer recognizes itself
+      use("wbthomason/packer.nvim")
 
-  -- terminal
-  use(require("user.plug.toggleterm").plug)
+      -- terminal
+      use(require("user.plug.toggleterm").plug)
 
-  -- syntax highlighting
-  use(require("user.plug.nvim-treesitter").plug)
+      -- syntax highlighting
+      use(require("user.plug.nvim-treesitter").plug)
 
-  -- file browser
-  use(require("user.plug.tree").plug)
+      -- file browser
+      use(require("user.plug.tree").plug)
 
-  -- language server
-  --use(require("user.plug.coc").plug)
-  use(require("user.plug.mason").plug)
+      -- language server
+      --use(require("user.plug.coc").plug)
+      use(require("user.plug.mason").plug)
 
-  -- autocomplete
-  use(require("user.plug.nvim-cmp").plug)
+      -- autocomplete
+      use(require("user.plug.nvim-cmp").plug)
 
-  -- debugger
-  use(require("user.plug.nvim-dap-ui").plug) 
+      -- debugger
+      use(require("user.plug.nvim-dap-ui").plug) 
 
-  -- utility
-  use("lewis6991/impatient.nvim")
+      -- utility
+      use("lewis6991/impatient.nvim")
 
-  -- automatically set your configuration after cloning packer.nvim
-  -- put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+      -- automatically set your configuration after cloning packer.nvim
+      -- put this at the end after all plugins
+      if PACKER_BOOTSTRAP then
+        require("packer").sync()
+      end
+    end,
+    config = {
+      snapshot='20221018',
+    }
+  }
+)
 
