@@ -13,6 +13,7 @@ local function setup()
       custom = {
         ".git",
         "__pycache__",
+        ".pytest_cache",
       },
     },
   })
