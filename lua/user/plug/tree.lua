@@ -11,9 +11,9 @@ local function setup()
     },
     filters = {
       custom = {
-        ".git",
-        "__pycache__",
-        ".pytest_cache",
+        "^.git$",
+        "^__pycache__$",
+        "^.pytest_cache$",
       },
     },
   })
