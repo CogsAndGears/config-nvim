@@ -1,6 +1,11 @@
 local function setup()
   local cmp = require("cmp")
   cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -40,6 +45,10 @@ local plug = {
     --"hrsh7th/cmp-calc",
     --"f3fora/cmp-spell",
     --"hrsh7th/cmp-emoji",
+
+    -- snippet engine
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
   },
   config = function ()
     require("user.plug.nvim-cmp").setup()
