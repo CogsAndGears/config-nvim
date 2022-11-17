@@ -62,6 +62,7 @@ return packer.startup(
 
       -- file browser
       use(require("user.plug.tree").plug)
+      use(require("user.plug.telescope").plug)
 
       -- language server
       --use(require("user.plug.coc").plug)
@@ -87,7 +88,7 @@ return packer.startup(
       end
     end,
     config = {
-      snapshot='20221112',
+      snapshot='20221116',
     }
   }
 )
