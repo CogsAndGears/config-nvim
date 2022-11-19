@@ -12,6 +12,9 @@ local options = {
   cmdheight = 1,                 -- more space in nvim command line for displaying messages
   cursorline = true,             -- highlight cursor line
   number = true,                 -- show line numbers
+  list = true,                   -- turn on list mode to show whitespace
+  --listchars = 'tab:>- ,trail:x,extends:>,precedes:<,nbsp:+,leadmultispace:.',
+  listchars = 'nbsp:+,lead:.,trail:x,tab:<=>,multispace:.',
 }
 
 for k,v in pairs(options) do
