@@ -29,6 +29,7 @@ Leader character: `,`
 | `n` | `#gg` | Go to line # |
 | `n` | `G` | Go to last line |
 | `n` | `<leader>rn` | Rename symbol under cursor |
+| `n` | `:%s/<find>/<replace>/gc` | Globally confirm replacement of `<find>` with `<replace>`. Omit `c` to skip confirmation, omit `%` to only replace once |
 | <td colspan=2>**Coc**</td> |
 | `i` | `<cr>` | Accept suggestion |
 | `i` | `<c-j>` | Trigger snippets |
