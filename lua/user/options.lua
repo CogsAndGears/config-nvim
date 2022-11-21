@@ -15,6 +15,7 @@ local options = {
   list = true,                   -- turn on list mode to show whitespace
   --listchars = 'tab:>- ,trail:x,extends:>,precedes:<,nbsp:+,leadmultispace:.',
   listchars = 'nbsp:+,lead:.,trail:x,tab:<=>,multispace:.',
+  colorcolumn = "100",
 }
 
 for k,v in pairs(options) do
