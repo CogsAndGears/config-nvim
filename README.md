@@ -30,6 +30,8 @@ Leader character: `,`
 | `n` | `G` | Go to last line |
 | `n` | `<leader>rn` | Rename symbol under cursor |
 | `n` | `:%s/<find>/<replace>/gc` | Globally confirm replacement of `<find>` with `<replace>`. Omit `c` to skip confirmation, omit `%` to only replace once |
+| `n` | `<C-O>` | Jump back to previous location (eg. after going to a function definition) |
+| `n` | `<C-I>/<Tab>` | Jump forward location (eg. after going back with `<C-O>`) |
 | <td colspan=2>**Coc**</td> |
 | `i` | `<cr>` | Accept suggestion |
 | `i` | `<c-j>` | Trigger snippets |
