@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-This directory contains the plugin and user configuration files used by NeoVim to manage and install plugins.
+This directory contains the plugin and user configuration files used by NeoVim to manage and install plugins. The `vim` directory contains standard .vimrc and other settings files for core vim.
 
 # Updating plugin configuration
 
