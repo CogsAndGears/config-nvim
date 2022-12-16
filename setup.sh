@@ -9,7 +9,7 @@ CONFIG_DIR="${HOME}/.config"
 
 NVIM_CONFIG_DIR="${CONFIG_DIR}/nvim"
 VIMRC_FILE="${HOME}/.vimrc"
-VIM_CONFIG_DIR="${CONFIG_DIR}/.vim"
+VIM_CONFIG_DIR="${HOME}/.vim"
 
 if [ -f "${VIMRC_FILE}" ]; then
 	mv "${VIMRC_FILE}" "${VIMRC_FILE}.bak${NOW}"
