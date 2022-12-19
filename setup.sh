@@ -26,3 +26,12 @@ if [ -d "${NVIM_CONFIG_DIR}" ]; then
 	echo "Neovim config dir exits; backing up to: ${NVIM_CONFIG_DIR}.bak${NOW}"
 fi
 ln -s "${SCRIPT_DIR}" "${NVIM_CONFIG_DIR}"
+
+SOURCE_LINE="source ${SCRIPT_DIR}/nvim.env.sh"
+ZSHRC_FILE="${HOME}/.zshrc"
+SOURCES_SCRIPT=$(grep "# Source user Neovim config" "${ZSHRC_FILE}")
+if [ -z "${SOURCES_SCRIPT}" ]; then
+	echo "Adding source line to .zshrc"
+	echo "# Source user Neovim config" >> "${ZSHRC_FILE}"
+	echo "${SOURCE_LINE}" >> "${ZSHRC_FILE}"
+fi

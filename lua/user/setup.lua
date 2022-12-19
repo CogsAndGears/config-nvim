@@ -7,7 +7,7 @@ if status_ok then
   impatient.enable_profile()
 end
 
--- configure CoC support paths
+-- configure LSP support paths
 -- python
-vim.g.python3_host_prog = "/home/cogs/.app/neovim-support/py3/env/bin/python"
-
+PYTHON_PATH = os.getenv("MY_NVIM_SUPPORT_PYTHON") .. "/bin/python"
+vim.g.python3_host_prog = PYTHON_PATH
