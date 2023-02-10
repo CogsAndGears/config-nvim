@@ -88,7 +88,7 @@ return packer.startup(
       end
     end,
     config = {
-      snapshot='20221116',
+      snapshot='20230209',
     }
   }
 )
