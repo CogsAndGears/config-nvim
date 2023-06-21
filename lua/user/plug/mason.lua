@@ -8,7 +8,6 @@ local auto_servers = {
   "cssls",
   "dotls",
   "dockerls",
-  "eslint",
   "gopls",
   "html",
   "jsonls",
@@ -24,6 +23,7 @@ local auto_servers = {
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
   "rust_analyzer@nightly",
+  "eslint",
 }
 
 -- makes a new list with the first element of the passed-in list
@@ -100,6 +100,22 @@ local function setup_rust_tools()
   })
 end
 
+local function setup_eslint(capabilities)
+  require("lspconfig").eslint.setup({
+    capabilities=capabilities,
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+      on_attach(client, bufnr)
+    end,
+    settings={
+      run = "onSave",
+    },
+  })
+end
+
 local function setup()
   require("mason").setup()
   require("mason-lspconfig").setup({
@@ -108,10 +124,14 @@ local function setup()
   -- configure the simple servers
   local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, name in ipairs(auto_servers) do
-    local ok, server = require("lspconfig")[name].setup({ capabilities=capabilities, on_attach=on_attach })
+    local ok, server = require("lspconfig")[name].setup({
+      capabilities=capabilities,
+      on_attach=on_attach,
+    })
   end
   -- configure the servers which require more installation steps
   setup_rust_tools()
+  setup_eslint(capabilities)
 end
 
 -- LSP Server package manager
