@@ -19,6 +19,7 @@ local auto_servers = {
   "pyright",
   "yamlls",
   "graphql",
+  "svelte",
 }
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
