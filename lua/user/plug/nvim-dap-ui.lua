@@ -60,7 +60,9 @@ local function setup()
 end
 
 local plug = {
-  "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, config = function ()
+  "rcarriga/nvim-dap-ui",
+  dependencies = { "mfussenegger/nvim-dap" },
+  config = function ()
     require("user.plug.nvim-dap-ui").setup()
   end
 }

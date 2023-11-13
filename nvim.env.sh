@@ -19,4 +19,4 @@ if [ ! -d "${MY_NVIM_SUPPORT_PYTHON}" ]; then
 fi
 
 # add neovim to path
-export PATH=${MY_APP_DIR}/install/neovim/stable/bin:${PATH}
+export PATH=${MY_APP_DIR}/install/neovim/installed/bin:${PATH}

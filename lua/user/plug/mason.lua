@@ -14,7 +14,7 @@ local auto_servers = {
   "jdtls",
   "kotlin_language_server",
   "marksman",
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "pyright",
   "yamlls",
@@ -138,7 +138,7 @@ end
 -- LSP Server package manager
 local plug = {
   "williamboman/mason.nvim",
-  requires = {
+  dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "simrat39/rust-tools.nvim",

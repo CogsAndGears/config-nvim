@@ -37,7 +37,8 @@ end
 local plug = {
   "nvim-tree/nvim-tree.lua", config = function()
     require("user.plug.tree").setup()
-  end
+  end,
+  lazy = false,
 }
 
 return {

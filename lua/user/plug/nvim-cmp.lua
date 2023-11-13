@@ -35,7 +35,7 @@ end
 
 local plug = {
   "hrsh7th/nvim-cmp",
-  requires = {
+  dependencies = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lsp",
     --"quangnguyen30192/cmp-nvim-ultisnips",

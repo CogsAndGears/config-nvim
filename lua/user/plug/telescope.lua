@@ -12,7 +12,7 @@ end
 
 local plug = {
   "nvim-telescope/telescope.nvim",
-  requires = { {"nvim-lua/plenary.nvim"} },
+  dependencies = { {"nvim-lua/plenary.nvim"} },
   config = function()
     require("user.plug.telescope").setup()
   end
