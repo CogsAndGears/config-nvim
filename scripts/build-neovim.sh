@@ -2,7 +2,9 @@
 
 set -e
 
-MY_APP_DIR=/srv/app
+if [[ -z "${MY_APP_DIR}" ]]; then
+  MY_APP_DIR=/srv/app
+fi
 NEOVIM_CHECKOUT=stable
 
 BUILD_DIR="${MY_APP_DIR}/build/neovim"
