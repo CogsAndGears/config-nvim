@@ -8,6 +8,7 @@ local function setup()
     view = {
       number = true,
       relativenumber = true,
+      adaptive_size = true,
     },
     filters = {
       custom = {
