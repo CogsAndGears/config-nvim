@@ -38,8 +38,11 @@ require("lazy").setup(
     -- debugger
     require("user.plug.nvim-dap-ui").plug,
 
-      -- utility
+    -- utility
     --{ "lewis6991/impatient.nvim" },
+    
+    -- database connectivity
+    require("user.plug.vim-dadbod-ui").plug,
   },
   {
     defaults = {
