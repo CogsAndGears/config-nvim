@@ -17,3 +17,14 @@ vim.g.maplocalleader = ","
 -- rename symbol
 keymap("n", "<leader>rn", ":lua vim.lsp.buf.rename()<CR>", { noremap = true })
 
+-- copy to clipboard
+keymap("v", "<leader>y", "\"+y", { noremap = true })
+keymap("v", "<leader>Y", "\"+yg_", { noremap = true })
+keymap("n", "<leader>y", "\"+y", { noremap = true })
+keymap("n", "<leader>yy", "\"+yy", { noremap = true })
+
+-- Paste from clipboard
+keymap("n", "<leader>p", "\"+p", { noremap = true })
+keymap("n", "<leader>P", "\"+P", { noremap = true })
+keymap("v", "<leader>p", "\"+p", { noremap = true })
+keymap("v", "<leader>P", "\"+P", { noremap = true })
