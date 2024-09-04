@@ -2,7 +2,6 @@
 -- configuration
 local auto_servers = {
   "clangd",
-  "csharp_ls",
   "cmake",
   "clojure_lsp",
   "cssls",
@@ -14,6 +13,7 @@ local auto_servers = {
   "jdtls",
   "kotlin_language_server",
   "marksman",
+  "omnisharp",
   "lua_ls",
   "tsserver",
   "pyright",
