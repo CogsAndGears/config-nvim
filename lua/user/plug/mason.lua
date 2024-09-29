@@ -20,7 +20,7 @@ local auto_servers = {
   "yamlls",
   "graphql",
   "svelte",
-  "standardrb",
+  "solargraph", -- ruby
 }
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
