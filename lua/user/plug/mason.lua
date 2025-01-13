@@ -15,7 +15,7 @@ local auto_servers = {
   "marksman",
   "omnisharp",
   "lua_ls",
-  "tsserver",
+  "ts_ls",
   "pyright",
   "yamlls",
   "graphql",
