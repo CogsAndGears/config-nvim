@@ -43,6 +43,9 @@ require("lazy").setup(
     
     -- database connectivity
     require("user.plug.vim-dadbod-ui").plug,
+
+    -- color scheme
+    require("user.plug.kanagawa").plug,
   },
   {
     defaults = {

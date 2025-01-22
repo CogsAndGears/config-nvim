@@ -22,7 +22,8 @@ for k,v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd('colorscheme alduin')
+-- vim.cmd('colorscheme alduin')
+vim.cmd('colorscheme kanagawa')
 
 -- Set completeopt to have a better completion experience
 -- :help completeopt
