@@ -24,7 +24,7 @@ local auto_servers = {
 }
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
-  "rust_analyzer@nightly",
+--  "rust_analyzer@nightly",
   "eslint",
 }
 
@@ -52,7 +52,7 @@ end
 local servers = combine_lists(auto_servers, manual_servers)
 
 -- Set up keymaps when attaching LSP to a buffer
-local on_attach = function(client, buffer)
+local on_attach = function(client, bufnr)
   -- mappings
   -- see `:help vim.lsp.*` for documentation
   -- settings from here: https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
@@ -88,6 +88,10 @@ local function strip_ver(package_name)
   return result
 end
 
+-- DEPRECATED
+-- `rust-tools` was abandoned and users are encouraged to migrate to `rustaceanvim`
+-- https://github.com/simrat39/rust-tools.nvim
+-- https://github.com/mrcjkb/rustaceanvim
 local function setup_rust_tools()
   local rt = require("rust-tools")
   rt.setup({
@@ -105,7 +109,7 @@ local function setup_rust_tools()
 end
 
 local function setup_eslint(capabilities)
-  require("lspconfig").eslint.setup({
+  vim.lsp.config('eslint', {
     capabilities=capabilities,
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -128,13 +132,12 @@ local function setup()
   -- configure the simple servers
   local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
   for _, name in ipairs(auto_servers) do
-    local ok, server = require("lspconfig")[name].setup({
+    local ok, server = vim.lsp.config(name, {
       capabilities=capabilities,
       on_attach=on_attach,
     })
   end
   -- configure the servers which require more installation steps
-  setup_rust_tools()
   setup_eslint(capabilities)
 end
 
@@ -144,7 +147,7 @@ local plug = {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-    "simrat39/rust-tools.nvim",
+    --"simrat39/rust-tools.nvim", -- DEPRECATED
   },
   config = function ()
     require("user.plug.mason").setup()

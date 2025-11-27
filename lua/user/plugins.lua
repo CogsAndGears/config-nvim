@@ -31,6 +31,7 @@ require("lazy").setup(
     -- language server
     --use(require("user.plug.coc").plug)
     require("user.plug.mason").plug,
+    require("user.plug.rustaceanvim").plug,
 
     -- autocomplete
     require("user.plug.nvim-cmp").plug,
@@ -40,7 +41,7 @@ require("lazy").setup(
 
     -- utility
     --{ "lewis6991/impatient.nvim" },
-    
+
     -- database connectivity
     require("user.plug.vim-dadbod-ui").plug,
 
