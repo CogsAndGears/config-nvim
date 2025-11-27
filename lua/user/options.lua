@@ -22,7 +22,11 @@ for k,v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- Old colour scheme I was using
 -- vim.cmd('colorscheme alduin')
+
+-- themes: "wave" (default), "dragon", "lotus"
+-- can be invoked directly eg. `kanagawa-dragon`
 vim.cmd('colorscheme kanagawa')
 
 -- Set completeopt to have a better completion experience
