@@ -2,10 +2,13 @@
 
 set -e
 
+# `stable` is the most recent
+NVIM_VERSION=v0.11.5
+
 if [[ -z "${MY_APP_DIR}" ]]; then
   MY_APP_DIR=/srv/app
 fi
-NEOVIM_CHECKOUT=stable
+NEOVIM_CHECKOUT=$NVIM_VERSION
 
 BUILD_DIR="${MY_APP_DIR}/build/neovim"
 if [ ! -d "${BUILD_DIR}" ]; then
