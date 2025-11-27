@@ -28,3 +28,12 @@ keymap("n", "<leader>p", "\"+p", { noremap = true })
 keymap("n", "<leader>P", "\"+P", { noremap = true })
 keymap("v", "<leader>p", "\"+p", { noremap = true })
 keymap("v", "<leader>P", "\"+P", { noremap = true })
+
+-- manage language server settings
+-- toggle inlay hints for current buffer
+vim.keymap.set("n", "<leader>li", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local new = not vim.lsp.inlay_hint.is_enabled({bufnr = bufnr})
+  vim.lsp.inlay_hint.enable(new, {bufnr = bufnr})
+  print("Inlay hints " .. (new and "enabled" or "disabled"))
+end)
