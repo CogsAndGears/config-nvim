@@ -114,9 +114,19 @@ local function setup_eslint(capabilities)
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
-        command = "EslintFixAll",
+        -- `EslintFixAll` seems to have been changed to `LspEslintFixAll`, but it's also
+        -- not working properly. See this bug report:
+        -- https://github.com/neovim/nvim-lspconfig/issues/3837
+        -- That page also includes an alternate way to achieve a similar effect, which
+        -- has been added here.
+        -- command = "LspEslintFixAll",
+        callback = function(event)
+          local namespace = vim.lsp.diagnostic.get_namespace(client.id, true)
+          local diagnostics = vim.diagnostic.get(event.buf, { namespace = namespace })
+          local eslint = function(formatter) return formatter.name == 'eslint' end
+          if #diagnostics > 0 then vim.lsp.buf.format({ async = false, filter = eslint }) end
+        end,
       })
-      on_attach(client, bufnr)
     end,
     settings={
       run = "onSave",
