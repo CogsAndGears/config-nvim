@@ -37,3 +37,10 @@ vim.keymap.set("n", "<leader>li", function()
   vim.lsp.inlay_hint.enable(new, {bufnr = bufnr})
   print("Inlay hints " .. (new and "enabled" or "disabled"))
 end)
+
+-- User commands
+
+-- Split an import line in ts into one line per import
+vim.api.nvim_create_user_command("Splitts", function()
+  require("user.util.split_ts").split_ts_import_line()
+end, {})
