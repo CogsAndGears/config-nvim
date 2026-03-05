@@ -112,8 +112,10 @@ local function setup_eslint(capabilities)
   vim.lsp.config('eslint', {
     capabilities=capabilities,
     on_attach = function(client, bufnr)
+      local group = vim.api.nvim_create_augroup("EslintFixAll_buf_" .. bufnr, { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
+        group = group,
         -- `EslintFixAll` seems to have been changed to `LspEslintFixAll`, but it's also
         -- not working properly. See this bug report:
         -- https://github.com/neovim/nvim-lspconfig/issues/3837
