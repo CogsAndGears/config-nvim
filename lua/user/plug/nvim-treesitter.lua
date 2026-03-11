@@ -17,7 +17,7 @@ local function setup()
       enable = true,
       additional_vim_regex_highlighting = false,
     },
-    indent = { enable = false},
+    indent = { enable = true },
     rainbox = {
       enable = true,
       extended_mode = true,
