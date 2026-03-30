@@ -12,19 +12,35 @@ local auto_servers = {
   "jsonls",
   "jdtls",
   "kotlin_language_server",
-  "marksman",
-  "omnisharp",
+  "marksman", -- <-- markdown
+  "omnisharp", -- <-- C#
   "lua_ls",
   "ts_ls",
   "pyright",
   "yamlls",
   "graphql",
   "svelte",
-  "solargraph", -- ruby
+  "solargraph", -- <-- ruby
 }
 -- language servers that require some manual steps to get them working the way we want
 local manual_servers = {
---  "rust_analyzer@nightly",
+  -- `rust_analyzer` was removed from here because the Rust LSP is now being handled by
+  -- `rustaceanvim`. However this comment is being kept because we still need
+  -- `rust-analyzer` to exist, and the best way to do that is by adding it directly
+  -- to the rust toolchain:
+  --
+  -- ```bash
+  -- rustup component add rust-analyzer
+  -- ```
+  --
+  -- This ensures your current version is always in sync with whatever
+  -- version of Rust you have installed. Managing it via `Mason`
+  -- can end up getting out of sync.
+  --
+  -- If you currently have this installed in Mason, uninstall it to be safe. (`X`)
+  --
+  -- Previous setting:
+  -- "rust_analyzer@nightly",
   "eslint",
 }
 
@@ -140,6 +156,11 @@ local function setup()
   require("mason").setup()
   require("mason-lspconfig").setup({
     ensure_installed = servers,
+    handlers = {
+      -- prevent `rust_analyzer` from running if it's installed, since we're relying
+      -- on `rustaceanvim` for the actual Rust LSP tooling
+      rust_analyzer = function() end,
+    },
   })
   -- configure the simple servers
   local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

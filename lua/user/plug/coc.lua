@@ -6,8 +6,8 @@ local extensions = {
   "coc-css",
   -- python
   "coc-pyright",
-  -- rust
-  "coc-rust-analyzer",
+  -- rust -- Commented out because I'm using rustaceanvim
+  --"coc-rust-analyzer",
 }
 
 function set_extensions()
