@@ -32,6 +32,9 @@ require("lazy").setup(
     --use(require("user.plug.coc").plug)
     require("user.plug.mason").plug,
     require("user.plug.rustaceanvim").plug,
+    -- enhanced markdown formatting
+    --require("user.plug.obsidian").plug,
+    --require("user.plug.mkdnflow").plug,
 
     -- autocomplete
     require("user.plug.nvim-cmp").plug,

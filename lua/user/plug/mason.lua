@@ -12,6 +12,17 @@ local auto_servers = {
   "jsonls",
   "jdtls",
   "kotlin_language_server",
+  -- marksman defaults to `title_from_heading=true`, which causes
+  -- headers in markdown documents to be the autocomplete list of
+  -- items you can link to. This is typically less than ideal, but
+  -- requires a configuration file to fix. You can either put a
+  -- `.marksman.toml` file at the root of a repository or a
+  -- `$HOME/.config/marksman/config.toml` with the contents:
+  --
+  -- ```toml
+  -- [core]
+  -- title_from_heading = false
+  -- ```
   "marksman", -- <-- markdown
   "omnisharp", -- <-- C#
   "lua_ls",
