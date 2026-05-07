@@ -1,4 +1,5 @@
 local function setup()
+  require("lsp-file-operations").setup()
   require("nvim-tree").setup({
     git = {
       enable = true,
@@ -40,6 +41,10 @@ local plug = {
     require("user.plug.tree").setup()
   end,
   lazy = false,
+  dependencies = {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 }
 
 return {
