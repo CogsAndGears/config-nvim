@@ -44,3 +44,13 @@ end)
 vim.api.nvim_create_user_command("Splitts", function()
   require("user.util.split_ts").split_ts_import_line()
 end, {})
+
+-- Delete dead swap files (owning process no longer running) under &directory
+vim.api.nvim_create_user_command("SwapClean", function()
+  require("user.util.clean_swaps").clean_swaps()
+end, {})
+
+-- Report dead/live swap files under &directory without deleting anything
+vim.api.nvim_create_user_command("SwapList", function()
+  require("user.util.clean_swaps").list_swaps()
+end, {})
