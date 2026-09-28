@@ -2,7 +2,6 @@
 -- configuration
 local auto_servers = {
   "clangd",
-  "cmake",
   "clojure_lsp",
   "cssls",
   "dotls",
