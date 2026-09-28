@@ -10,7 +10,7 @@ local languages = {
   "yaml",
 }
 local function setup()
-  require("nvim-treesitter.configs").setup {
+  require("nvim-treesitter.config").setup {
     ensure_installed = languages,
     auto_install = true,
     highlight = {
