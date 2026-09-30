@@ -5,38 +5,36 @@ local languages = {
   "lua",
   "php",
   "rust",
+  "sql",
   "toml",
   "tsx",
   "yaml",
 }
 local function setup()
-  require("nvim-treesitter.config").setup {
-    ensure_installed = languages,
-    auto_install = true,
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    indent = { enable = true },
-    rainbox = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = nil,
-    },
-    peek_definition_code = {
-      ["<leader>J"] = "@function.outer",
-      ["<leader>Q"] = "@class.outer",
-    }
-  }
-
+  require("nvim-treesitter").install(languages)
   -- connect nvim folding api to treesitter
   --vim.wo.foldmethod = 'expr'
   --vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  ---vim.api.nvim_create_autocmd("FileType", {
+  ---  pattern = { "<filetype>" },
+  ---  callback = function() vim.treesitter.start() end,
+  ---})
+  vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+      local lang = vim.treesitter.language.get_lang(args.match)
+      if not lang or not vim.treesitter.language.add(lang) then
+        return
+      end
+      vim.treesitter.start(args.buf, lang)
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+  })
 end
 
 local plug = {
   "nvim-treesitter/nvim-treesitter",
-  run = ":TSUpdate",
+  lazy = false,
+  build = ":TSUpdate",
   config = function()
     require("user.plug.nvim-treesitter").setup()
   end
