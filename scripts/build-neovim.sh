@@ -3,7 +3,7 @@
 set -e
 
 # `stable` is the most recent
-NVIM_VERSION=v0.11.5
+NVIM_VERSION=v0.12.5
 
 if [[ -z "${MY_APP_DIR}" ]]; then
   MY_APP_DIR=/srv/app
