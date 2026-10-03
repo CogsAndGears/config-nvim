@@ -135,25 +135,18 @@ local function setup_rust_tools()
 end
 
 local function setup_eslint(capabilities)
+  -- lspconfig's default `on_attach` is what creates the `LspEslintFixAll` command, so
+  -- it needs to be captured before it's overridden below
+  local base_on_attach = vim.lsp.config.eslint.on_attach
   vim.lsp.config('eslint', {
     capabilities=capabilities,
     on_attach = function(client, bufnr)
+      if base_on_attach then base_on_attach(client, bufnr) end
       local group = vim.api.nvim_create_augroup("EslintFixAll_buf_" .. bufnr, { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = bufnr,
         group = group,
-        -- `EslintFixAll` seems to have been changed to `LspEslintFixAll`, but it's also
-        -- not working properly. See this bug report:
-        -- https://github.com/neovim/nvim-lspconfig/issues/3837
-        -- That page also includes an alternate way to achieve a similar effect, which
-        -- has been added here.
-        -- command = "LspEslintFixAll",
-        callback = function(event)
-          local namespace = vim.lsp.diagnostic.get_namespace(client.id, true)
-          local diagnostics = vim.diagnostic.get(event.buf, { namespace = namespace })
-          local eslint = function(formatter) return formatter.name == 'eslint' end
-          if #diagnostics > 0 then vim.lsp.buf.format({ async = false, filter = eslint }) end
-        end,
+        command = "LspEslintFixAll",
       })
     end,
     settings={
